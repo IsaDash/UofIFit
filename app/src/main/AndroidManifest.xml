@@ -26,7 +26,12 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".meals" />
+        <activity android:name=".gallery" />
+        <activity android:name=".profile" />
+        <activity android:name=".steps" />
+        <activity android:name=".camera"></activity>
     </application>
 
 </manifest>
