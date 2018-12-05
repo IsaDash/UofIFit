@@ -20,4 +20,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="edit_height">Enter Height</string>
+    <string name="send_height">Update</string>
+    <string name="enter_weight">Enter Weight</string>
+    <string name="edit_calorie">Enter Calorie Goal</string>
 </resources>
