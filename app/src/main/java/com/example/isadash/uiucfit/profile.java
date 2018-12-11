@@ -21,29 +21,21 @@ import java.util.ArrayList;
 
 public class  profile extends AppCompatActivity {
 
-    String updateHeight;
-    String updateWeight;
+    private static String updateHeight;
+    private static String updateWeight;
     String updateGoal;
 
     Button btnHeight;
     Button btnWeight;
     Button btnSteps;
-//    Button btnCalorie;
+    //    Button btnCalorie;
     EditText height;
     EditText weight;
-//    EditText calorie;
+    //    EditText calorie;
     TextView tWeight;
     TextView tHeight;
-//    TextView tCalorie;
-
+    //    TextView tCalorie;
     Context context;
-
-
-    TextView tStepGoal;
-
-    private static String w;
-    private static String h;
-
 
 
     @Override
@@ -69,20 +61,14 @@ public class  profile extends AppCompatActivity {
         updateHeight = getDataFromPreferences(context, "height");
         tHeight.setText("Height: " + updateHeight);
 //        tCalorie = (TextView) findViewById(R.id.textViewCalorie);
-        tStepGoal = (TextView) findViewById(R.id.textViewSteps);
 
 
         btnHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 updateHeight = height.getText().toString();
                 saveDataToPreferences(context, "height", updateHeight);
                 tHeight.setText("Height: " + updateHeight);
-
-                h = height.getText().toString();
-                tHeight.setText("Height: " + h);
-
                 Toast.makeText(profile.this, "Height updated successfully", Toast.LENGTH_LONG).show();
 
 
@@ -101,8 +87,6 @@ public class  profile extends AppCompatActivity {
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int stepGoals = (int) (getWeight() + getHeight());
-                tStepGoal.setText("Daily Step Goal: " + stepGoals);
                 Toast.makeText(profile.this, "Generating Step Goal", Toast.LENGTH_LONG).show();
             }
         });
@@ -120,8 +104,7 @@ public class  profile extends AppCompatActivity {
 
 
 
-        }
-
+    }
 
     public static void saveDataToPreferences(Context context, String key,
                                              String value) {
@@ -139,26 +122,17 @@ public class  profile extends AppCompatActivity {
         return preferences.getString(key, "");
     }
 
-//        public static double getWeight() {
-//            w = w.split("$")[1].trim();
-//            double wNumeric = Double.parseDouble(w);
-//            return wNumeric;
-//        }
-
-        public static double getWeight() {
-            w = w.split("$")[0].trim();
-            double wNumeric = Double.parseDouble(w);
-            return wNumeric;
-        }
-
-
+    public static double getWeight() {
+        String w = updateWeight.split("$")[0].trim();
+        double wNumeric = Double.parseDouble(w);
+        return wNumeric;
+    }
     public static double getHeight() {
-        h = h.split("$")[0].trim();
+        String h = updateHeight.split("$")[0].trim();
         double hNumeric = Double.parseDouble(h);
         return hNumeric;
     }
 
 
-
-    }
+}
 
