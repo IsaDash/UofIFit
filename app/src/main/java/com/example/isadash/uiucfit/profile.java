@@ -1,6 +1,9 @@
 package com.example.isadash.uiucfit;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,9 +21,9 @@ import java.util.ArrayList;
 
 public class  profile extends AppCompatActivity {
 
-    ArrayList<String> updateHeight =  new ArrayList<String>();
-    ArrayList<String> updateWeight =  new ArrayList<String>();
-    ArrayList<String> updateCalorie =  new ArrayList<String>();
+    String updateHeight;
+    String updateWeight;
+    String updateGoal;
 
     Button btnHeight;
     Button btnWeight;
@@ -32,6 +35,10 @@ public class  profile extends AppCompatActivity {
     TextView tWeight;
     TextView tHeight;
 //    TextView tCalorie;
+
+    Context context;
+
+
     TextView tStepGoal;
 
     private static String w;
@@ -43,6 +50,7 @@ public class  profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        context = this;
 
         height = (EditText) findViewById(R.id.editHeight);
         weight = (EditText)  findViewById(R.id.editWeight);
@@ -54,7 +62,12 @@ public class  profile extends AppCompatActivity {
 //        btnCalorie = (Button) findViewById(R.id.buttonCalorie);
 
         tWeight = (TextView) findViewById(R.id.textViewWeight);
+        updateWeight = getDataFromPreferences(context, "weight");
+        tWeight.setText("Weight: " + updateWeight);
+
         tHeight = (TextView) findViewById(R.id.textViewHeight);
+        updateHeight = getDataFromPreferences(context, "height");
+        tHeight.setText("Height: " + updateHeight);
 //        tCalorie = (TextView) findViewById(R.id.textViewCalorie);
         tStepGoal = (TextView) findViewById(R.id.textViewSteps);
 
@@ -62,8 +75,14 @@ public class  profile extends AppCompatActivity {
         btnHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                updateHeight = height.getText().toString();
+                saveDataToPreferences(context, "height", updateHeight);
+                tHeight.setText("Height: " + updateHeight);
+
                 h = height.getText().toString();
                 tHeight.setText("Height: " + h);
+
                 Toast.makeText(profile.this, "Height updated successfully", Toast.LENGTH_LONG).show();
 
 
@@ -72,8 +91,9 @@ public class  profile extends AppCompatActivity {
         btnWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                w = weight.getText().toString();
-                tWeight.setText("Weight: " + w);
+                updateWeight = weight.getText().toString();
+                saveDataToPreferences(context, "weight", updateWeight);
+                tWeight.setText("Weight: " + updateWeight);
                 Toast.makeText(profile.this, "Weight updated successfully", Toast.LENGTH_LONG).show();
             }
         });
@@ -102,22 +122,41 @@ public class  profile extends AppCompatActivity {
 
         }
 
+
+    public static void saveDataToPreferences(Context context, String key,
+                                             String value) {
+        SharedPreferences preferences = context.getSharedPreferences("your package name",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
+    public static String getDataFromPreferences(Context context, String key) {
+
+        SharedPreferences preferences = context.getSharedPreferences("your package name",
+                Context.MODE_PRIVATE);
+        return preferences.getString(key, "");
+    }
+
+//        public static double getWeight() {
+//            w = w.split("$")[1].trim();
+//            double wNumeric = Double.parseDouble(w);
+//            return wNumeric;
+//        }
+
         public static double getWeight() {
             w = w.split("$")[0].trim();
             double wNumeric = Double.parseDouble(w);
             return wNumeric;
         }
 
+
     public static double getHeight() {
         h = h.split("$")[0].trim();
         double hNumeric = Double.parseDouble(h);
         return hNumeric;
     }
-
-
-
-
-
 
 
 
