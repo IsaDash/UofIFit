@@ -56,27 +56,6 @@ public class  profile extends AppCompatActivity {
                 String h = height.getText().toString();
                 tHeight.setText("Height: " + h);
                 Toast.makeText(profile.this, "Height updated successfully", Toast.LENGTH_LONG).show();
-                FileOutputStream saveHeight = null;
-
-                try {
-                    saveHeight = openFileOutput("UserInput.txt", MODE_PRIVATE);
-                    saveHeight.write(h.getBytes());
-
-                } catch(FileNotFoundException e) {
-                    e.printStackTrace();
-
-                } catch(IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (saveHeight != null) {
-                        try {
-                            saveHeight.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
 
 
             }
