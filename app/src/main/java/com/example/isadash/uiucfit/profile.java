@@ -23,18 +23,17 @@ public class  profile extends AppCompatActivity {
 
     private static String updateHeight;
     private static String updateWeight;
-    String updateGoal;
+
 
     Button btnHeight;
     Button btnWeight;
-    Button btnSteps;
-    //    Button btnCalorie;
+
     EditText height;
     EditText weight;
-    //    EditText calorie;
+
     TextView tWeight;
     TextView tHeight;
-    //    TextView tCalorie;
+
     Context context;
 
 
@@ -50,7 +49,7 @@ public class  profile extends AppCompatActivity {
 
         btnHeight = (Button) findViewById(R.id.buttonHeight);
         btnWeight = (Button) findViewById(R.id.buttonWeight);
-        btnSteps = (Button) findViewById(R.id.buttonCalorie);
+        //btnSteps = (Button) findViewById(R.id.buttonCalorie);
 //        btnCalorie = (Button) findViewById(R.id.buttonCalorie);
 
         tWeight = (TextView) findViewById(R.id.textViewWeight);
@@ -71,7 +70,6 @@ public class  profile extends AppCompatActivity {
                 tHeight.setText("Height: " + updateHeight);
                 Toast.makeText(profile.this, "Height updated successfully", Toast.LENGTH_LONG).show();
 
-
             }
         });
         btnWeight.setOnClickListener(new View.OnClickListener() {
@@ -83,25 +81,6 @@ public class  profile extends AppCompatActivity {
                 Toast.makeText(profile.this, "Weight updated successfully", Toast.LENGTH_LONG).show();
             }
         });
-
-        btnSteps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(profile.this, "Generating Step Goal", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-        /*btnCalorie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String c = calorie.getText().toString();
-                tCalorie.setText("Calorie: " + c);
-                Toast.makeText(profile.this, "Calorie goal updated successfully", Toast.LENGTH_LONG).show();
-            }
-        });
-*/
-
 
 
     }
