@@ -24,13 +24,16 @@ public class  profile extends AppCompatActivity {
 
     Button btnHeight;
     Button btnWeight;
-    Button btnCalorie;
+    Button btnSteps;
+//    Button btnCalorie;
     EditText height;
     EditText weight;
-    EditText calorie;
+//    EditText calorie;
     TextView tWeight;
     TextView tHeight;
-    TextView tCalorie;
+//    TextView tCalorie;
+
+    private static String w;
 
 
     @Override
@@ -40,14 +43,16 @@ public class  profile extends AppCompatActivity {
 
         height = (EditText) findViewById(R.id.editHeight);
         weight = (EditText)  findViewById(R.id.editWeight);
-        calorie = (EditText)  findViewById(R.id.editCalorie);
+//        calorie = (EditText)  findViewById(R.id.editCalorie);
 
         btnHeight = (Button) findViewById(R.id.buttonHeight);
         btnWeight = (Button) findViewById(R.id.buttonWeight);
-        btnCalorie = (Button) findViewById(R.id.buttonCalorie);
+        btnSteps = (Button) findViewById(R.id.buttonCalorie);
+//        btnCalorie = (Button) findViewById(R.id.buttonCalorie);
+
         tWeight = (TextView) findViewById(R.id.textViewWeight);
         tHeight = (TextView) findViewById(R.id.textViewHeight);
-        tCalorie = (TextView) findViewById(R.id.textViewCalorie);
+//        tCalorie = (TextView) findViewById(R.id.textViewCalorie);
 
 
         btnHeight.setOnClickListener(new View.OnClickListener() {
@@ -63,12 +68,21 @@ public class  profile extends AppCompatActivity {
         btnWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String w = weight.getText().toString();
+                w = weight.getText().toString();
                 tWeight.setText("Weight: " + w);
                 Toast.makeText(profile.this, "Weight updated successfully", Toast.LENGTH_LONG).show();
             }
         });
-        btnCalorie.setOnClickListener(new View.OnClickListener() {
+
+        btnSteps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(profile.this, "Generating Step Goal", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        /*btnCalorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String c = calorie.getText().toString();
@@ -76,10 +90,16 @@ public class  profile extends AppCompatActivity {
                 Toast.makeText(profile.this, "Calorie goal updated successfully", Toast.LENGTH_LONG).show();
             }
         });
+*/
 
 
 
+        }
 
+        public static double getWeight() {
+            w = w.split("$")[1].trim();
+            double wNumeric = Double.parseDouble(w);
+            return wNumeric;
         }
 
 
