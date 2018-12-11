@@ -32,8 +32,11 @@ public class  profile extends AppCompatActivity {
     TextView tWeight;
     TextView tHeight;
 //    TextView tCalorie;
+    TextView tStepGoal;
 
     private static String w;
+    private static String h;
+
 
 
     @Override
@@ -53,12 +56,13 @@ public class  profile extends AppCompatActivity {
         tWeight = (TextView) findViewById(R.id.textViewWeight);
         tHeight = (TextView) findViewById(R.id.textViewHeight);
 //        tCalorie = (TextView) findViewById(R.id.textViewCalorie);
+        tStepGoal = (TextView) findViewById(R.id.textViewSteps);
 
 
         btnHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String h = height.getText().toString();
+                h = height.getText().toString();
                 tHeight.setText("Height: " + h);
                 Toast.makeText(profile.this, "Height updated successfully", Toast.LENGTH_LONG).show();
 
@@ -77,6 +81,8 @@ public class  profile extends AppCompatActivity {
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int stepGoals = (int) (getWeight() + getHeight());
+                tStepGoal.setText("Daily Step Goal: " + stepGoals);
                 Toast.makeText(profile.this, "Generating Step Goal", Toast.LENGTH_LONG).show();
             }
         });
@@ -97,10 +103,16 @@ public class  profile extends AppCompatActivity {
         }
 
         public static double getWeight() {
-            w = w.split("$")[1].trim();
+            w = w.split("$")[0].trim();
             double wNumeric = Double.parseDouble(w);
             return wNumeric;
         }
+
+    public static double getHeight() {
+        h = h.split("$")[0].trim();
+        double hNumeric = Double.parseDouble(h);
+        return hNumeric;
+    }
 
 
 
