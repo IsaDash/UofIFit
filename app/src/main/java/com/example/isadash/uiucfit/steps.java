@@ -25,15 +25,6 @@ public class steps extends AppCompatActivity implements SensorEventListener {
         setContentView(R.layout.activity_steps);
 
         steps = (TextView) findViewById(R.id.textSteps);
-        //cal = (TextView) findViewById(R.id.textViewCalorie);
-//        Button btnCalories = (Button) findViewById(R.id.buttonCalorie);
-//        btnCalories.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(steps.this, Calories.class);
-//                startActivity(intent);
-//            }
-//        });
         String stepsTaken = steps.getText().toString();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -69,12 +60,10 @@ public class steps extends AppCompatActivity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         if (running) {
             steps.setText(String.valueOf(event.values[0]));
-//            double calories = (1.9) * profile.getWeight() * 0.45 * (event.values[0]/ 660.0);
-//            String calString = Double.toString(calories);
-//            cal = (TextView) findViewById(R.id.textViewCal);
-            //cal.setText(String.valueOf(event.values[0]));
-
-
+            double calories = (1.9) * profile.getWeight() * 0.45 * (getSteps()/ 660.0);
+            String calString = Double.toString(calories);
+            cal = (TextView) findViewById(R.id.textCalories);
+            cal.setText(String.valueOf(calories));
 
         }
     }
