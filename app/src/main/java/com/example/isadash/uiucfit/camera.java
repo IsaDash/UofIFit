@@ -44,11 +44,7 @@ public class camera extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                File picDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                String picName = getPictureName();
-                File imageFile = new File(picDirectory, picName);
-                Uri picUri = Uri.fromFile(imageFile);
-                //intent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
+                //File picDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
                 startActivityForResult(intent, 5);
 
@@ -64,9 +60,9 @@ public class camera extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 
-        //imgView.setImageBitmap(bitmap);
+        imgView.setImageBitmap(bitmap);
 
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
